@@ -31,7 +31,7 @@ module Shoryuken
     private
 
     def worker
-      @_worker ||= Shoryuken.worker_registry.fetch_worker(queue, sqs_msg) || NotFoundJobClassFallback.new(sqs_msg)
+      @_worker ||= Shoryuken.worker_registry.fetch_worker(queue, sqs_msg) || ::NotFoundJobClassFallback.get(sqs_msg)
     end
 
     def worker_class
